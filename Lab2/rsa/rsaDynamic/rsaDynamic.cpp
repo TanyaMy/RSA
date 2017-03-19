@@ -57,8 +57,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			_tscanf_s(_T("%s"), str, MAX_INPUT_LENGTH);
 			const size_t size = _tcslen(str);
 
-
-
+			
 
 			_tprintf(msg1, str);
 
