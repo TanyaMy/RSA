@@ -1,6 +1,9 @@
 #include "stdafx.h"
-#include <windows.h>
-#include <locale.h> 
+#include <locale.h>
+#include <Windows.h>
+#include <tchar.h>
+#include <iostream>
+#include <stdio.h>
 
 #define MAX_INPUT_LENGTH 50
 
@@ -22,6 +25,8 @@ int _tmain(int argc, _TCHAR* argv[]) {
 			SetConsoleOutputCP(1251);
 
 			TCHAR str[MAX_INPUT_LENGTH];
+			unsigned e, d;
+			unsigned n = generateKeys(&e, &d);
 			int lang;
 			const wchar_t *msg1;
 			const wchar_t *msg2;
@@ -38,7 +43,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				msg3 = _T("\nDecripted message: ");
 			}
 
-			if (lang == 2) {
+			else if (lang == 2) {
 				_tsetlocale(LC_ALL, _T("Russian"));
 				_tprintf(_T("\nВведите сообщение для шифрования:\n"));
 				msg1 = _T("\nИсходное сообщение: ");
@@ -46,24 +51,26 @@ int _tmain(int argc, _TCHAR* argv[]) {
 				msg3 = _T("\nРасшифрованное сообщение: ");
 			}
 
-			if (lang == 3) {
+			else if (lang == 3) {
 				_tsetlocale(LC_ALL, _T("Ukrainian"));
 				_tprintf(_T("\nВведіть повідомлення для шифрування:\n"));
 				msg1 = _T("\nВихідне повідмлення: ");
 				msg2 = _T("\nЗашифрование повідомлення: ");
 				msg3 = _T("\nРозшифрование повідомлення: ");
 			}
+			
+			
+			_tscanf_s(_T(" %[^\n]s"), str, MAX_INPUT_LENGTH);
 
-			_tscanf_s(_T("%s"), str, MAX_INPUT_LENGTH);
 			const size_t size = _tcslen(str);
+			
+			_tprintf(msg1);
+			for (int i = 0; i < size; i++)
+			{
+				_tprintf(_T("%c"), str[i]);
+			}
 
 			
-
-			_tprintf(msg1, str);
-
-			unsigned e, d;
-			unsigned n = generateKeys(&e, &d);
-
 			unsigned* encryptedStr = new unsigned[size];
 
 			_tprintf(msg2);

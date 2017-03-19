@@ -6,11 +6,9 @@
 #include <windows.h>
 #include<iostream>
 
-using namespace std;
 
 
 #define MAX_INPUT_LENGTH 50
-
 
 
 int _tmain() {
@@ -19,11 +17,12 @@ int _tmain() {
 	SetConsoleOutputCP(1251);
 
 	TCHAR str[MAX_INPUT_LENGTH];
+	unsigned e, d;
+	unsigned n = generateKeys(e, d);
 	int lang;
 	const wchar_t *msg1;
 	const wchar_t *msg2;
 	const wchar_t *msg3;
-
 
 	printf_s("Choose language: 1 - English, 2 - Russian, 3 - Ukrainian\n");
 	scanf_s("%d", &lang);
@@ -35,7 +34,7 @@ int _tmain() {
 		msg3 = _T("\nDecripted message: ");
 	}
 
-	if (lang == 2) {
+	else if (lang == 2) {
 		_tsetlocale(LC_ALL, _T("Russian"));
 		_tprintf(_T("\nВведите сообщение для шифрования:\n"));
 		msg1 = _T("\nИсходное сообщение: ");
@@ -43,25 +42,28 @@ int _tmain() {
 		msg3 = _T("\nРасшифрованное сообщение: ");
 	}
 
-	if (lang == 3) {
+	else if (lang == 3) {
 		_tsetlocale(LC_ALL, _T("Ukrainian"));
 		_tprintf(_T("\nВведіть повідомлення для шифрування:\n"));
 		msg1 = _T("\nВихідне повідмлення: ");
 		msg2 = _T("\nЗашифрование повідомлення: ");
 		msg3 = _T("\nРозшифрование повідомлення: ");
 	}
+	else {
+		_tprintf(_T("\nERROR!\n"));
+		return -1;
+	}
 
-	_tscanf_s(_T("%s"), str, MAX_INPUT_LENGTH);
+	_tscanf_s(_T(" %[^\n]s"), str, MAX_INPUT_LENGTH);
+
 	const size_t size = _tcslen(str);
-
-
-
-
-	_tprintf(msg1, str);
-
-	unsigned e, d;
-	unsigned n = generateKeys(e, d);
-
+	
+	_tprintf(msg1);
+	for (int i = 0; i < size; i++)
+	{
+		_tprintf(_T("%c"), str[i]);
+	}
+		
 	unsigned* encryptedStr = new unsigned[size];
 
 	_tprintf(msg2);
