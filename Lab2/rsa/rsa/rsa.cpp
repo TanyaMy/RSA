@@ -134,7 +134,7 @@ RSAAPI void multiLangExecute() {
 		msg3 = _T("\nРозшифрование повідомлення: ");
 	}
 	else {
-		_tprintf(_T("\nERROR!\n"));
+		_tprintf(_T("\nERROR!\n\n"));
 	}
 
 	_tscanf_s(_T(" %[^\n]s"), str, MAX_MES_LENGTH);
@@ -146,7 +146,7 @@ RSAAPI void multiLangExecute() {
 	{
 		_tprintf(_T("%c"), str[i]);
 	}
-
+	
 	unsigned* encMsg = new unsigned[size];
 
 	_tprintf(msg2);

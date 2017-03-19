@@ -6,6 +6,7 @@
 
 int _tmain() {
 
+	//
 	multiLangExecute();
 
 	system("pause");

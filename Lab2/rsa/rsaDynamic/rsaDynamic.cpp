@@ -2,7 +2,6 @@
 #include <locale.h>
 #include <Windows.h>
 #include <tchar.h>
-#include <iostream>
 #include <stdio.h>
 
 
@@ -22,6 +21,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 
 		if (crypt && decrypt && generateKeys && multiLangExecute) {
 			
+			//
 			multiLangExecute();
 
 			system("pause");
