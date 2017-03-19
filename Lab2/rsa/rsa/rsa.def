@@ -1,0 +1,5 @@
+LIBRARY rsa.dll
+EXPORTS
+crypt
+decrypt
+generateKeys
