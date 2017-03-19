@@ -3,3 +3,4 @@ EXPORTS
 crypt
 decrypt
 generateKeys
+multiLangExecute

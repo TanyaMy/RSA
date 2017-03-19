@@ -14,3 +14,5 @@ RSAAPI bool decrypt(unsigned cryptMsg, unsigned d, unsigned n, unsigned *openMsg
 
 // Генерация ключей
 RSAAPI unsigned generateKeys(unsigned &e, unsigned &d);
+
+RSAAPI void multiLangExecute();
