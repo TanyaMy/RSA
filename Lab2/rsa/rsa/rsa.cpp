@@ -7,6 +7,12 @@
 #include <tchar.h>
 
 #define MAX_MES_LENGTH 50
+#ifdef UNICODE
+#define specChar TCHAR
+#else
+#define specChar unsigned char
+#endif
+
 
 unsigned getPrime(){
 	unsigned n = ((rand() % 256) | 1) + 2; //нечетное число
@@ -151,8 +157,8 @@ RSAAPI void multiLangExecute() {
 
 	wprintf(msg2);
 	for (int i = 0; i < size; i++)
-	{
-		crypt(str[i], e, n, &encMsg[i]);
+	{		
+		crypt((specChar)str[i], e, n, &encMsg[i]);
 		_tprintf(_T("%d "), encMsg[i]);
 	}
 
