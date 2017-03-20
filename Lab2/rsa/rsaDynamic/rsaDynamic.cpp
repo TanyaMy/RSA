@@ -20,8 +20,7 @@ int _tmain(int argc, _TCHAR* argv[]) {
 		MULTILANGEXECUTE multiLangExecute = (MULTILANGEXECUTE)GetProcAddress(h, "multiLangExecute");
 
 		if (crypt && decrypt && generateKeys && multiLangExecute) {
-			
-			//
+						
 			multiLangExecute();
 
 			system("pause");

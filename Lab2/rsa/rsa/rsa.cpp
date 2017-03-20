@@ -113,25 +113,25 @@ RSAAPI void multiLangExecute() {
 
 	if (lang == 1) {
 		_tprintf(_T("\nEnter the message to encode:\n"));
-		msg1 = _T("\nSource message: ");
-		msg2 = _T("\nEncrypted message: ");
-		msg3 = _T("\nDecripted message: ");
+		msg1 = L"\nSource message: ";
+		msg2 = L"\nEncrypted message: ";
+		msg3 = L"\nDecripted message: ";
 	}
 
 	else if (lang == 2) {
 		_tsetlocale(LC_ALL, _T("Russian"));
 		_tprintf(_T("\nВведите сообщение для шифрования:\n"));
-		msg1 = _T("\nИсходное сообщение: ");
-		msg2 = _T("\nЗашифрованное сообщение: ");
-		msg3 = _T("\nРасшифрованное сообщение: ");
+		msg1 = L"\nИсходное сообщение: ";
+		msg2 = L"\nЗашифрованное сообщение: ";
+		msg3 = L"\nРасшифрованное сообщение: ";
 	}
 
 	else if (lang == 3) {
 		_tsetlocale(LC_ALL, _T("Ukrainian"));
 		_tprintf(_T("\nВведіть повідомлення для шифрування:\n"));
-		msg1 = _T("\nВихідне повідмлення: ");
-		msg2 = _T("\nЗашифрование повідомлення: ");
-		msg3 = _T("\nРозшифрование повідомлення: ");
+		msg1 = L"\nВихідне повідмлення: ";
+		msg2 = L"\nЗашифрование повідомлення: ";
+		msg3 = L"\nРозшифрование повідомлення: ";
 	}
 	else {
 		_tprintf(_T("\nERROR!\n\n"));
@@ -141,7 +141,7 @@ RSAAPI void multiLangExecute() {
 
 	const size_t size = _tcslen(str);
 
-	_tprintf(msg1);
+	wprintf(msg1);
 	for (int i = 0; i < size; i++)
 	{
 		_tprintf(_T("%c"), str[i]);
@@ -149,7 +149,7 @@ RSAAPI void multiLangExecute() {
 	
 	unsigned* encMsg = new unsigned[size];
 
-	_tprintf(msg2);
+	wprintf(msg2);
 	for (int i = 0; i < size; i++)
 	{
 		crypt(str[i], e, n, &encMsg[i]);
@@ -159,11 +159,9 @@ RSAAPI void multiLangExecute() {
 	unsigned* decMsg = new unsigned[size + 1];
 
 	int counter = 0;
-	_tprintf(msg3);
+	wprintf(msg3);
 	for (counter = 0; counter < size; counter++)
-	{
-		unsigned a;
-		decrypt(encMsg[counter], d, n, &a);
+	{	
 		decrypt(encMsg[counter], d, n, &decMsg[counter]);
 	}
 
